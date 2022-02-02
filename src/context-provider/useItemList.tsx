@@ -24,7 +24,7 @@ export const useItemList = ():{
     const { state, dispatch } = context;
 
     const loadItemlistAsync = async ():Promise<void> => {
-        const result = await axios.get("http://localhost:3000/todos");
+        const result = await axios.get("http://localhost:9000/todos");
         if(result.status === 200){
             dispatch({type: 'LOAD_DATA', payload:{ itemList: result.data}})
         }
@@ -32,17 +32,17 @@ export const useItemList = ():{
     }
 
     const removeItemAsync = async (id:number):Promise<void> => {
-        await axios.delete(`http://localhost:3000/todos/${id}`);
+        await axios.delete(`http://localhost:9000/todos/${id}`);
         await loadItemlistAsync();
     }
 
     const addItemAsync = async (title:string):Promise<void> => {
-        await axios.post(`http://localhost:3000/todos`, { title })
+        await axios.post(`http://localhost:9000/todos`, { title })
         await loadItemlistAsync();
     }
 
     const updateCompletedItemAsync = async (id:number, completed:boolean):Promise<void> => {
-        await axios.patch(`http://localhost:3000/todos/${id}`, { completed })
+        await axios.patch(`http://localhost:9000/todos/${id}`, { completed })
         await loadItemlistAsync();
     }
 

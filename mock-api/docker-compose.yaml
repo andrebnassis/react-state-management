@@ -7,6 +7,6 @@ services:
             - SUBDOMAIN=
             - URL_PATH=/
         ports:
-            - '3000:3000'
+            - '9000:3000'
         container_name: web-api-mocker
         image: andrebnassis/web-api-mocker
