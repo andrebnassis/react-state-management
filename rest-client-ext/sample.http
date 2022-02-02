@@ -1,0 +1,23 @@
+GET http://localhost:9000/todos
+###
+
+POST http://localhost:9000/todos
+Content-Type: application/json
+
+{ 
+"title": "test", 
+}
+###
+
+DELETE http://localhost:9000/todos/1
+Content-Type: application/json
+
+###
+
+PATCH http://localhost:9000/todos/2
+Content-Type: application/json
+
+{
+    "completed": true
+}
+###
