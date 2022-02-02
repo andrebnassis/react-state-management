@@ -21,7 +21,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "mock-api:start": "docker-compose -f mock-api/docker-compose.yaml up -d",
+    "mock-api:stop": "docker-compose -f mock-api/docker-compose.yaml down -v"
   },
   "eslintConfig": {
     "extends": [
