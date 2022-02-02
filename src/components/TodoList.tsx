@@ -1,10 +1,24 @@
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useItemList } from '../context-provider/useItemList';
 import TodoItem from './TodoItem';
 
 const TodoList:React.FC = () => {
 
-    const {data} = useItemList()
+    
+    const {data, loadItemlistAsync} = useItemList()
+
+    const loadItemsList = useCallback(async () => {
+       try{
+        await loadItemlistAsync();
+    }
+    catch(e){
+        console.log(e);
+    }
+    },[loadItemlistAsync])
+
+    useEffect(() => {
+        loadItemsList();
+    },[])
 
 	return (
 		<ul className='list-group'>

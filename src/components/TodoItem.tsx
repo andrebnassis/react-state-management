@@ -1,18 +1,29 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useItemList } from '../context-provider/useItemList';
 import { ITodoItem } from './ITodoItem';
 
 const TodoItem:React.FC<ITodoItem> = ({ id, title, completed }) => {
-	console.log({completed})
-    const { removeItem, updateCompletedItem } = useItemList();
+	
+    const { removeItem,removeItemAsync,  updateCompletedItem, updateCompletedItemAsync } = useItemList();
+
+    const updateItemCompletedAPI = useCallback(async(id:number, completed:boolean) => {
+        await updateCompletedItemAsync(id, completed);
+    }, [updateCompletedItemAsync])
+
+
+    const deleteItemApi = useCallback(async (id) => {
+        await removeItemAsync(id);
+    }, [removeItemAsync])
 
     const handleDeleteItem = (event:React.MouseEvent<HTMLElement>, id:number):void => {
         event.preventDefault();
-        removeItem(id);
+        //removeItem(id);
+        deleteItemApi(id);
     }
 
     const handleToggleCompleteItem = (id:number, completed:boolean) => {
-        updateCompletedItem(id, completed);
+        //updateCompletedItem(id, completed);
+        updateItemCompletedAPI(id, completed);
     }
 
     return (

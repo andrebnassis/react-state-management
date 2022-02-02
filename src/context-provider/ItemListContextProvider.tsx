@@ -13,7 +13,13 @@ const ItemListContext = createContext<IItemListContextValue|undefined>(undefined
 //Step 2: Create the reducer                                        
 // Inside the reducer, we will create the actions that will update the state.
 
-export type ItemListAction = | {
+export type ItemListAction = |{
+    type: 'LOAD_DATA',
+    payload: {
+        itemList: Array<ITodoItem>
+    }
+}
+| {
     type: 'ADD_ITEM';
     payload: { title: string };
 } 
@@ -29,6 +35,8 @@ export type ItemListAction = | {
 
 const ItemListReducer = (state:Array<ITodoItem>, action: ItemListAction):Array<ITodoItem> => {
     switch(action.type){
+        case 'LOAD_DATA':
+            return [...action.payload.itemList]
         case 'ADD_ITEM':
             const item:ITodoItem = {
                 id:Date.now(),
