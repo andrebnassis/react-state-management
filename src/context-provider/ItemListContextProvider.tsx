@@ -1,16 +1,28 @@
 import React, { createContext, useMemo, useReducer } from "react"
 import { ITodoItem } from "../components/ITodoItem"
 
+interface IItemListContextValue {
+    state: Array<ITodoItem>; 
+    dispatch: React.Dispatch<ItemListAction>;
+}
+
 //Step 1: Create the context with the target data's reducer type. Initialize it with null.
-const ItemListContext = createContext<
-                                        {   state: Array<ITodoItem>; 
-                                            dispatch: React.Dispatch<any>;
-                                        }|null>(null);
+const ItemListContext = createContext<IItemListContextValue|undefined>(undefined);
 
 
 //Step 2: Create the reducer                                        
 // Inside the reducer, we will create the actions that will update the state.
-const ItemListReducer = (state:Array<ITodoItem>, action: any):Array<ITodoItem> => {
+
+export type ItemListAction = | {
+    type: 'ADD_ITEM';
+    payload: { title: string };
+} 
+| {
+    type: 'REMOVE_ITEM';
+    payload: { id: number };
+};
+
+const ItemListReducer = (state:Array<ITodoItem>, action: ItemListAction):Array<ITodoItem> => {
     switch(action.type){
         case 'ADD_ITEM':
             const item:ITodoItem = {
@@ -33,7 +45,7 @@ const ItemListContextProvider:React.FC = (props) => {
     const [state, dispatch] = useReducer(ItemListReducer, itemListInitialData);
 
     //Returns a new object {state, dispatch} everytime state changes
-    const value = useMemo(() => ({state, dispatch}), [state]);
+    const value:IItemListContextValue = useMemo(() => ({state, dispatch}), [state]);
 
     return (<ItemListContext.Provider value={value} {...props}/>);
 } 
