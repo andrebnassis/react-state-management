@@ -1,3 +1,9 @@
+# Context-Provider strategy
+## How it works
+React has Context API that allows you to access (read-only) any data that you set on the context (by creating its provider).
+
+So, Instead of creating a Context with the target data, we create a context with its reducer, so we can have access to it and then we can modify the data anywhere down the declared provider.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
