@@ -1,20 +1,15 @@
 import React from 'react';
-import { ITodoItem } from './ITodoItem';
+import { useItemList } from '../context-provider/useItemList';
 import TodoItem from './TodoItem';
 
 const TodoList:React.FC = () => {
-	const todos:Array<ITodoItem> = [
-		{ id: 1, title: 'todo1', completed: false },
-		{ id: 2, title: 'todo2', completed: false },
-		{ id: 3, title: 'todo3', completed: true },
-		{ id: 4, title: 'todo4', completed: false },
-		{ id: 5, title: 'todo5', completed: false },
-	];
+
+    const {data} = useItemList()
 
 	return (
 		<ul className='list-group'>
-			{todos.map((todo) => (
-				<TodoItem id={todo.id} title={todo.title} completed={todo.completed} />
+			{data.map((item) => (
+				<TodoItem id={item.id} title={item.title} completed={item.completed} />
 			))}
 		</ul>
 	);

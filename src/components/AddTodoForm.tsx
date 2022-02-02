@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
+import { useItemList } from '../context-provider/useItemList';
 
 const AddTodoForm:React.FC = () => {
 	const [value, setValue] = useState('');
 
 	const onSubmit = (event:React.FormEvent) => {
 		event.preventDefault();
-		console.log('user entered: ' + value);
+        addItem(value)
 	};
 
+    const {addItem} = useItemList();
 	return (
 		<form onSubmit={onSubmit} className='form-inline mt-3 mb-3'>
 			<label className='sr-only'>Name</label>

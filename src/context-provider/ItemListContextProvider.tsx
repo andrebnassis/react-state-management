@@ -20,7 +20,12 @@ export type ItemListAction = | {
 | {
     type: 'REMOVE_ITEM';
     payload: { id: number };
-};
+} 
+| {
+    type: 'UPDATE_COMPLETE';
+    payload: {id: number, completed: boolean}
+}
+;
 
 const ItemListReducer = (state:Array<ITodoItem>, action: ItemListAction):Array<ITodoItem> => {
     switch(action.type){
@@ -33,6 +38,10 @@ const ItemListReducer = (state:Array<ITodoItem>, action: ItemListAction):Array<I
             return [...state, item]
         case 'REMOVE_ITEM':
             return state.filter((item) => item.id !== action.payload.id);
+        case 'UPDATE_COMPLETE':
+            const index = state.findIndex(item => item.id === action.payload.id);
+            state[index].completed = action.payload.completed;
+            return [...state];
         default:
             return [...state];
     }
