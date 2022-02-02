@@ -1,3 +1,17 @@
+# Redux-Toolkit strategy
+## Reference Material
+
+* The project was based on the following material:  
+
+    * Youtube video: https://www.youtube.com/watch?v=fiesH6WU63I&ab_channel=ChrisBlakely
+
+    * Repository: https://github.com/chrisblakely01/react-redux-todo-app
+
+
+* Great reference for redux-toolkit learning
+
+    * Youtube video: https://www.youtube.com/watch?v=jR4fagDcvrc&ab_channel=LaithHarb
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
