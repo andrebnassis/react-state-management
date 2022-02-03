@@ -4,7 +4,7 @@ import AddTodoForm from './components/AddTodoForm';
 import TodoList from './components/TodoList';
 import TotalCompleteItems from './components/TotalCompleteItems';
 import { Provider } from 'react-redux';
-import store from './redux-core/store'
+import { store } from './redux-core/store'
 const App:React.FC = () => {
 	return (
 		<Provider store={store}>
