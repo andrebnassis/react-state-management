@@ -9,8 +9,9 @@
 
 
 * Great reference for redux-core learning
-
     * Youtube video: https://www.youtube.com/watch?v=9jULHSe41ls&ab_channel=LaithHarb
+
+    * Youtube video: https://www.youtube.com/watch?v=qA6oyQQTJ3I&ab_channel=SanjeevThiyagarajan
     
     * Youtube video: https://www.youtube.com/watch?v=udr2rx_B99w&ab_channel=LaithHarb
 
