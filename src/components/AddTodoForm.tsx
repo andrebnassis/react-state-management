@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as ItemListActionCreators  from '../redux-core/action-creators/ItemListActionCreator';
+
 
 const AddTodoForm:React.FC = () => {
 	const [value, setValue] = useState('');
 
+	const dispatch = useDispatch();
+	const {addItem} = bindActionCreators(ItemListActionCreators, dispatch);
+	
 	const onSubmit = (event:React.FormEvent) => {
 		event.preventDefault();
-		console.log('user entered: ' + value);
+		addItem(value);
 	};
 
 	return (
