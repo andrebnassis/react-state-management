@@ -1,4 +1,4 @@
-# Redux-Toolkit strategy
+# Redux-Core strategy
 ## Reference Material
 
 * The project was based on the following material:  
@@ -8,9 +8,11 @@
     * Repository: https://github.com/chrisblakely01/react-redux-todo-app
 
 
-* Great reference for redux-toolkit learning
+* Great reference for redux-core learning
 
-    * Youtube video: https://www.youtube.com/watch?v=jR4fagDcvrc&ab_channel=LaithHarb
+    * Youtube video: https://www.youtube.com/watch?v=9jULHSe41ls&ab_channel=LaithHarb
+    
+    * Youtube video: https://www.youtube.com/watch?v=udr2rx_B99w&ab_channel=LaithHarb
 
 # Getting Started with Create React App
 
