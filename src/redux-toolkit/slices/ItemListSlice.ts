@@ -1,7 +1,16 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit'
+import {createSlice, PayloadAction, createAsyncThunk} from '@reduxjs/toolkit'
+import axios from 'axios';
 import { ITodoItem } from '../../components/ITodoItem';
 
 const initialState:Array<ITodoItem> = [];
+
+const loadItemListAsync = createAsyncThunk('itemListSlice/loadItemListAsync', async () => {
+    const result = await axios.get("http://localhost:9000/todos");
+    if(result.status === 200){
+        return {itemList: result.data};
+    }
+})
+
 const ItemListSlice = createSlice({
     name:"itemListSlice",
     initialState,
@@ -23,8 +32,22 @@ const ItemListSlice = createSlice({
             state[index].completed = action.payload.completed;
             return state;
         }
+    },
+    extraReducers:{
+        [loadItemListAsync.fulfilled as any]:(state, action:PayloadAction<{itemList:Array<ITodoItem>}>) => {
+            console.log('success');
+            return action.payload.itemList;
+        },
+        [loadItemListAsync.pending as any]: (state, action) => {
+            console.log('loading...');
+        },
+        [loadItemListAsync.rejected as any]:(state, action) => {
+            console.log('error');
+            return [];
+        }
     }
 })
 
+export { loadItemListAsync };
 export const { addItem, removeItem, updateCompletedItem } = ItemListSlice.actions;
 export const ItemListSliceReducer = ItemListSlice.reducer;
