@@ -1,20 +1,18 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { ITodoItem } from './ITodoItem';
-import * as ItemListActionCreators from '../redux-core/action-creators/ItemListActionCreator'
+import { removeItem, updateCompletedItem} from '../redux-core/action-creators/ItemListActionCreator'
 const TodoItem:React.FC<ITodoItem> = ({ id, title, completed }) => {
 	
 	const dispatch = useDispatch();
-	const {removeItem,updateCompletedItem} = bindActionCreators(ItemListActionCreators, dispatch)
-
+	
     const handleDeleteItem = (event:React.MouseEvent<HTMLElement>, id:number):void => {
         event.preventDefault();
-        removeItem(id);
+        dispatch(removeItem(id));
     }
 
 	const handleToggleCompleteItem = (id:number, completed:boolean) => {
-        updateCompletedItem(id, completed);   
+        dispatch(updateCompletedItem(id, completed));
     }
 
 
