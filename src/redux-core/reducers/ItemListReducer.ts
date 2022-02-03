@@ -20,25 +20,41 @@ type ItemListAction = |{
 }
 ;
 
-const ItemListReducer = (state:Array<ITodoItem> = [], action: ItemListAction):Array<ITodoItem> => {
+interface IState {
+    itemList: Array<ITodoItem>,
+    error: any
+}
+
+const initialState = {
+    itemList: [],
+    error: null
+}
+
+const ItemListReducer = (state:IState = initialState, action: ItemListAction):IState => {
     switch(action.type){
         case 'LOAD_DATA':
-            return [...action.payload.itemList]
+            return {...state, 
+                itemList: [...action.payload.itemList]
+            }
         case 'ADD_ITEM':
             const item:ITodoItem = {
                 id:Date.now(),
                 title: action.payload.title,
                 completed: false
             }
-            return [...state, item]
+            return {...state,
+                itemList: [...state.itemList, item]
+            }
         case 'REMOVE_ITEM':
-            return state.filter((item) => item.id !== action.payload.id);
+            return {...state,
+                itemList: state.itemList.filter((item) => item.id !== action.payload.id)
+            }
         case 'UPDATE_COMPLETE':
-            const index = state.findIndex(item => item.id === action.payload.id);
-            state[index].completed = action.payload.completed;
-            return [...state];
+            const index = state.itemList.findIndex(item => item.id === action.payload.id);
+            state.itemList[index].completed = action.payload.completed;
+            return {...state};
         default:
-            return [...state];
+            return {...state};
     }
 }
 
