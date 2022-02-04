@@ -1,10 +1,10 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../redux-toolkit/hooks';
 import { removeItem, updateCompletedItem } from '../redux-toolkit/slices/ItemListSlice';
 import { ITodoItem } from './ITodoItem';
 
 const TodoItem:React.FC<ITodoItem> = ({ id, title, completed }) => {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	
     const handleDeleteItem = (event:React.MouseEvent<HTMLElement>, id:number):void => {
         event.preventDefault();

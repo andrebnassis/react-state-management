@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../redux-toolkit/hooks';
 import { addItem } from '../redux-toolkit/slices/ItemListSlice';
 
 const AddTodoForm:React.FC = () => {
 	const [value, setValue] = useState('');
 
-	const dispatch = useDispatch()
+	const dispatch = useAppDispatch()
 
 	const onSubmit = (event:React.FormEvent) => {
 		event.preventDefault();

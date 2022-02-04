@@ -1,10 +1,9 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../redux-toolkit/store';
+import { useAppSelector } from '../redux-toolkit/hooks';
 
 const TotalCompleteItems:React.FC = () => {
 	
-	const {itemListInfo} = useSelector((state:RootState) => state);
+	const {itemListInfo} = useAppSelector((state) => state);
 	
 	return <h4 className='mt-3'>{`Total Complete Items: ${(itemListInfo.filter(item => item.completed)).length}`}</h4>;
 };

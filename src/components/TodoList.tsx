@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../redux-toolkit/hooks';
 import { loadItemListAsync } from '../redux-toolkit/slices/ItemListSlice';
-import { RootState } from '../redux-toolkit/store';
 import TodoItem from './TodoItem';
 
 const TodoList:React.FC = () => {
 
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	
-	const {itemListInfo} = useSelector((state:RootState) => state);
+	const {itemListInfo} = useAppSelector((state) => state);
 	
 	useEffect(() => {
 		dispatch(loadItemListAsync())
